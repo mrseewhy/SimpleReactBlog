@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import Home from './Components/Home'
+import Topbar from './Components/Topbar';
+import Addpost from './Components/Addpost'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    blogposts : [{
+      heading: 'Post One', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus nesciunt voluptatum pariatur culpa facere voluptates nulla cupiditate sint autem fuga, expedita, ducimus ea voluptas id magni! Odio consectetur corrupti voluptates."
+    },
+    {
+      heading: 'Post Two', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus nesciunt voluptatum pariatur culpa facere voluptates nulla cupiditate sint autem fuga, expedita, ducimus ea voluptas id magni! Odio consectetur corrupti voluptates."
+    },
+    {
+      heading: 'Post Three', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus nesciunt voluptatum pariatur culpa facere voluptates nulla cupiditate sint autem fuga, expedita, ducimus ea voluptas id magni! Odio consectetur corrupti voluptates."
+    },]
+  }
+
+
+  addBlogPost = (post) =>{
+    this.setState({
+      blogposts: [...this.state.blogposts, post]
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <Topbar />
+        <Home  blogposts={this.state.blogposts}/>
+        <Addpost addBlogPost = {this.addBlogPost} />
+      </div>
+    )
+  }
 }
+
 
 export default App;
